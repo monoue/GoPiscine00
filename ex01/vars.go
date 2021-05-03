@@ -14,32 +14,35 @@ func putVarExplanation(v, varType string) {
 }
 
 func main() {
-	str := "42"
-	putVarExplanation(str, fmt.Sprintf("%T", str))
-	uintN := uint(42)
-	putVarExplanation(fmt.Sprintf("%d", uintN), fmt.Sprintf("%T", uintN))
-	intN := 42
-	putVarExplanation(fmt.Sprintf("%d", intN), fmt.Sprintf("%T", intN))
-	uint8N := uint8(42)
-	putVarExplanation(fmt.Sprintf("%d", uint8N), fmt.Sprintf("%T", uint8N))
-	int16N := int16(42)
-	putVarExplanation(fmt.Sprintf("%d", int16N), fmt.Sprintf("%T", int16N))
-	uint32N := uint32(42)
-	putVarExplanation(fmt.Sprintf("%d", uint32N), fmt.Sprintf("%T", uint32N))
-	int64N := int64(42)
-	putVarExplanation(fmt.Sprintf("%d", int64N), fmt.Sprintf("%T", int64N))
-	boolean := false
-	putVarExplanation(fmt.Sprintf("%t", boolean), fmt.Sprintf("%T", boolean))
-	float32N := float32(42)
-	putVarExplanation(fmt.Sprintf("%g", float32N), fmt.Sprintf("%T", float32N))
-	float64N := float64(42)
-	putVarExplanation(fmt.Sprintf("%g", float64N), fmt.Sprintf("%T", float64N))
-	// fmt.Printf("%v is %s %T.\n", str, aOrAn(str), str)
-	// uin := uint32(42)
-	// in, ui8n, i16n, ui32n, i64n, l
+	type FortyTwo struct {
+	}
+	vars := []interface{}{
+		"42",
+		uint(42),
+		42,
+		uint8(42),
+		int16(42),
+		uint32(42),
+		int64(42),
+		false,
+		float32(42),
+		float64(42),
+		(complex64)(42 + 0i),
+		42 + 21i,
+		FortyTwo{},
+		[...]int{42},
+		map[string]int{"42": 42},
+		(*int)(nil),
+		[]int{},
+		chan int(nil),
+		nil,
+	}
 
-	// aOrAn(str)
-	// fmt.Printf("%v is %s %T.\n", str, "a", str)
-	// fmt.Printf("% is %s %T.\n", str, "a", str)
-	// fmt.Println("42")
+	for _, v := range vars {
+		if v == (*int)(nil) {
+			putVarExplanation(fmt.Sprintf("%p", v), fmt.Sprintf("%T", v))
+			continue
+		}
+		putVarExplanation(fmt.Sprintf("%v", v), fmt.Sprintf("%T", v))
+	}
 }
