@@ -16,12 +16,12 @@ func setFlags() (bool, string) {
 func main() {
 	noNewLine, sep := setFlags()
 	for i, arg := range flag.Args() {
-		if (i != 0) {
+		if i != 0 {
 			fmt.Print(sep)
 		}
 		fmt.Print(arg)
 	}
-	if (!noNewLine) {
+	if !noNewLine {
 		fmt.Printf("%c", '\n')
 	}
 }

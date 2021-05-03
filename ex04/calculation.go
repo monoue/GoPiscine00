@@ -48,11 +48,11 @@ func calculationStr(args []string) (string, bool) {
 	return result, true
 }
 
-// func main() {
-// 	s, ok := calculationStr(os.Args)
-// 	if !ok {
-// 		fmt.Println(ERROR_MSG)
-// 		os.Exit(1)
-// 	}
-// 	fmt.Print(s)
-// }
+func main() {
+	s, ok := calculationStr(os.Args)
+	if !ok {
+		fmt.Println(ERROR_MSG)
+		os.Exit(1)
+	}
+	fmt.Print(s)
+}
