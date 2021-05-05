@@ -10,11 +10,11 @@ func setFlags() (bool, string) {
 	noNewLine := flag.Bool("n", false, "omit trailing newline")
 	sep := flag.String("s", defaultSep, "separator")
 	flag.Parse()
-	return *noNewLine, *sep
+	return !*noNewLine, *sep
 }
 
 func echo42() {
-	noNewLine, sep := setFlags()
+	newLine, sep := setFlags()
 	for i, arg := range flag.Args() {
 		if i == 0 {
 			fmt.Print(arg)
@@ -23,7 +23,7 @@ func echo42() {
 		fmt.Print(sep)
 		fmt.Print(arg)
 	}
-	if !noNewLine {
+	if newLine {
 		fmt.Printf("%c", '\n')
 	}
 }
