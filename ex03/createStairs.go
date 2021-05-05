@@ -17,7 +17,6 @@ func putStair(num int) {
 
 func putStairs(num int) {
 	i := 1
-
 	for total := 1; total <= num; total += i {
 		putStair(i)
 		i++

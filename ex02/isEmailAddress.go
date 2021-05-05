@@ -6,9 +6,9 @@ import (
 	"regexp"
 )
 
+var pattern = regexp.MustCompile(`^[a-zA-Z0-9\-._]+@[a-zA-Z0-9\-._]+\.[a-zA-Z]+$`)
+
 func isValidEmailAddressFormat(arg string) bool {
-	pattern := regexp.MustCompile("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$")
-	// pattern := regexp.MustCompile(`^[a-zA-Z0-9\-._]+@[a-zA-Z0-9\-._]+\.[a-zA-Z]+$`)
 	return pattern.MatchString(arg)
 }
 
@@ -17,8 +17,11 @@ func isValidEmailAddress(s string) bool {
 }
 
 func putEmailAddressValidation(arg string) {
-	insertion := ""
-	if !isValidEmailAddress(arg) {
+	var insertion string
+
+	if isValidEmailAddress(arg) {
+		insertion = ""
+	} else {
 		insertion = "NOT "
 	}
 	fmt.Printf("%v is %va valid email address.\n", arg, insertion)
@@ -32,7 +35,6 @@ func main() {
 	if len(args) == 0 {
 		fmt.Println(errMsg)
 	}
-	// for _, arg := range flag.Args() {
 	for _, arg := range args {
 		putEmailAddressValidation(arg)
 	}
