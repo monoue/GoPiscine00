@@ -3,10 +3,11 @@ package main
 import "fmt"
 
 func aOrAn(s string) string {
-	if len(s) > 2 && (s[:3] == "int" || s == "*int") {
+	if s[0] == 'i' || s[:2] == "*i" {
 		return "an"
+	} else {
+		return "a"
 	}
-	return "a"
 }
 
 func putVarExplanation(v, varType string) {

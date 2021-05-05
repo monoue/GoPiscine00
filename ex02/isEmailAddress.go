@@ -8,12 +8,8 @@ import (
 
 var pattern = regexp.MustCompile(`^[a-zA-Z0-9\-._]+@[a-zA-Z0-9\-._]+\.[a-zA-Z]+$`)
 
-func isValidEmailAddressFormat(arg string) bool {
-	return pattern.MatchString(arg)
-}
-
 func isValidEmailAddress(s string) bool {
-	return len(s) < 257 && isValidEmailAddressFormat(s)
+	return len(s) < 257 && pattern.MatchString(s)
 }
 
 func putEmailAddressValidation(arg string) {
@@ -34,6 +30,7 @@ func main() {
 	args := flag.Args()
 	if len(args) == 0 {
 		fmt.Println(errMsg)
+		return
 	}
 	for _, arg := range args {
 		putEmailAddressValidation(arg)

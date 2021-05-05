@@ -3,11 +3,10 @@ package main
 import "fmt"
 
 func subSlice(slice []int, begin int, length int, capacity int) []int {
-	var capa int
-
 	if begin < 0 || length < 0 {
 		return nil
 	}
+	var capa int
 	if capacity < length {
 		capa = length
 	} else {
