@@ -13,15 +13,21 @@ func setFlags() (bool, string) {
 	return *noNewLine, *sep
 }
 
-func main() {
+func echo42() {
 	noNewLine, sep := setFlags()
 	for i, arg := range flag.Args() {
-		if i != 0 {
-			fmt.Print(sep)
+		if i == 0 {
+			fmt.Print(arg)
+			continue
 		}
+		fmt.Print(sep)
 		fmt.Print(arg)
 	}
 	if !noNewLine {
 		fmt.Printf("%c", '\n')
 	}
+}
+
+func main() {
+	echo42()
 }

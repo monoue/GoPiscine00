@@ -6,8 +6,6 @@ import (
 	"strconv"
 )
 
-const ERROR_MSG string = "Arguments is invalid."
-
 func argsAreValid(args []string) bool {
 	const size = 3
 
@@ -46,13 +44,4 @@ func calculationStr(args []string) (string, bool) {
 	y, _ := strconv.Atoi(args[2])
 	result := setResult(x, y)
 	return result, true
-}
-
-func main() {
-	s, ok := calculationStr(os.Args)
-	if !ok {
-		fmt.Println(ERROR_MSG)
-		os.Exit(1)
-	}
-	fmt.Print(s)
 }
